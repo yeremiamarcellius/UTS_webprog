@@ -13,7 +13,7 @@ class BookCategoryFactory extends Factory
         $categoryId= DB::table('categories')->pluck('id');
         return [
             //
-            'book_id' => $this->faker->randomElement($bookId),
+            'book_id' => $this->faker->unique()->randomElement($bookId),
             'category_id' => $this->faker->randomElement($categoryId),
         ];
     }
