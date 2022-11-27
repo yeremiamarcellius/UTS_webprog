@@ -3,7 +3,8 @@
 namespace App\Providers;
 
 use App\Models\Category;
-use Illuminate\Support\Facades\View as FacadesView;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -16,6 +17,8 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         //
-        FacadesView::share('categories', Category::all());
+        if (! App::runningInConsole()) {
+            View::share('categories', Category::all());
+        }
     }
 }
